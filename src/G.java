@@ -28,7 +28,7 @@
  
    public static int BLACK_PERL_RDM = 90;
  
-  public static final int MAIN_MENU_TOP = computeY(170);
+  public static final int MAIN_MENU_TOP = computeY(160);
  
    public static final int computeX(int x)
    {
