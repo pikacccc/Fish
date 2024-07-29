@@ -834,10 +834,10 @@ public class MyGameCanvas extends GameCanvas implements Runnable {
             DrawAll();
             update();
             long tTime = System.currentTimeMillis() - startTime;
-            if (tTime >= 60L)
+            if (tTime >= 80L)
                 continue;
             try {
-                Thread.sleep(60L - tTime);
+                Thread.sleep(80L - tTime);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
