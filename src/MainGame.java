@@ -1,13 +1,5 @@
-import java.io.UnsupportedEncodingException;
-
-import javax.microedition.io.ConnectionNotFoundException;
 import javax.microedition.lcdui.Display;
 import javax.microedition.midlet.MIDlet;
-import javax.microedition.midlet.MIDletStateChangeException;
-
-import json.JSONException;
-import json.JSONObject;
-import json.JSONTokener;
 
 public class MainGame extends MIDlet {
     public static Display display;
@@ -16,7 +8,7 @@ public class MainGame extends MIDlet {
     public MainGame() {
         instance = this;
         display = Display.getDisplay(this);
-        display.setCurrent(GameCanvas.getInstance());
+        display.setCurrent(MyGameCanvas.getInstance());
         System.out.println("===========  init MainGame");
     }
 
