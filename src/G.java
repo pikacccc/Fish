@@ -19,14 +19,14 @@
    public static float AD_RATE = 0.0F;
    public static float AD_RATE_APPEND = 0.2F;
  
-   public static int WHITE_PERL_SCORE = 60;
+   public static int WHITE_CONSH_SCORE = 60;
    public static int OTHER = 16;
  
-   public static int MAX_PERL_RDM = 100;
+   public static int MAX_CONCH_RDM = 100;
  
-   public static int NULL_PERL_RDM = 80;
+   public static int NULL_CONCH_RDM = 80;
  
-   public static int BLACK_PERL_RDM = 90;
+   public static int BLACK_CONCH_RDM = 90;
  
   public static final int MAIN_MENU_TOP = computeY(160);
  

@@ -42,16 +42,16 @@ public class MyGameCanvas extends GameCanvas implements Runnable {
     private Image imgYummy;
     private Image imgGrowth;
     private Image imgSharks;
-    private Image[] imgSeaBg = new Image[3];
+    private Image[] imgUnderWaterWorld = new Image[3];
     private Image[] imgPS = new Image[11];
     private Image[] imgPM = new Image[11];
     private Image[] imgPL = new Image[11];
     private Image[] imgPlayer = new Image[33];
-    private Image[] imgEnemy = new Image['Â¥'];
+    private Image[] imgEnemy = new Image[167];
     private Image[] imgScore = new Image[13];
-    private Image[] imgPerl = new Image[4];
+    private Image[] imgConch = new Image[4];
     private Image[] imgBubble = new Image[5];
-    private Image[] imgBounus = new Image[5];
+    private Image[] imgPrecious = new Image[5];
     private Image[] imgShark = new Image[4];
     private Image imgNumber;
     private Image imgBy;
@@ -59,6 +59,7 @@ public class MyGameCanvas extends GameCanvas implements Runnable {
     private Image imgMenu;
     private Image imgStun;
     private Image imgArrow;
+    private Image imgBackTip;
     private SP[] sprite = new SP[70];
     private SP player;
     private int score;
@@ -129,25 +130,25 @@ public class MyGameCanvas extends GameCanvas implements Runnable {
         addEnemy();//modify by jakmax
 
         try {
-            for (int i = 0; i < this.imgSeaBg.length; i++) {
-                this.imgSeaBg[i] = Image.createImage("/res/seabg" + i + ".png");
+            for (int i = 0; i < this.imgUnderWaterWorld.length; i++) {
+                this.imgUnderWaterWorld[i] = Image.createImage("/res/underwaterworld" + i + ".png");
             }
 
-            this.imgPlayerSmall = Image.createImage("/res/pl.png");
+            this.imgPlayerSmall = Image.createImage("/res/player.png");
             for (int i = 0; i < this.imgPS.length; i++) {
                 this.imgPS[i] = Image.createImage(this.imgPlayerSmall, i * 37,
                         0, 37, 28, 0);
                 this.imgPlayer[i] = this.imgPS[i];
             }
 
-            this.imgPlayerMiddle = Image.createImage("/res/pl.png");
+            this.imgPlayerMiddle = Image.createImage("/res/player.png");
             for (int i = 0; i < this.imgPM.length; i++) {
                 this.imgPM[i] = Image.createImage(this.imgPlayerMiddle, i * 37,
                         0, 37, 28, 0);
                 this.imgPlayer[(11 + i)] = this.imgPM[i];
             }
 
-            this.imgPlayerLarge = Image.createImage("/res/pl.png");
+            this.imgPlayerLarge = Image.createImage("/res/player.png");
             for (int i = 0; i < this.imgPL.length; i++) {
                 this.imgPL[i] = Image.createImage(this.imgPlayerLarge, i * 37,
                         0, 37, 28, 0);
@@ -155,19 +156,19 @@ public class MyGameCanvas extends GameCanvas implements Runnable {
             }
             //System.out.println("===================="+getTimeNow(firstflag)+" <008>=================");
             for (int j = 0; j < 11; j++) {
-                this.imgEnemy0Small = Image.createImage("/res/e" + j + "l.png");
+                this.imgEnemy0Small = Image.createImage("/res/fish" + j + "l.png");
                 for (int i = 0; i < 5; i++) {
                     this.imgEnemy[(i + 15 * j)] = Image.createImage(
                             this.imgEnemy0Small, i * 24, 0, 24, 20, 0);
                 }
 
-                this.imgEnemy0Middle = Image.createImage("/res/e" + j + "l.png");
+                this.imgEnemy0Middle = Image.createImage("/res/fish" + j + "l.png");
                 for (int i = 0; i < 5; i++) {
                     this.imgEnemy[(5 + i + 15 * j)] = Image.createImage(
                             this.imgEnemy0Middle, i * 24, 0, 24, 20, 0);
                 }
 
-                this.imgEnemy0Large = Image.createImage("/res/e" + j + "l.png");
+                this.imgEnemy0Large = Image.createImage("/res/fish" + j + "l.png");
                 for (int i = 0; i < 5; i++) {
                     this.imgEnemy[(10 + i + 15 * j)] = Image.createImage(
                             this.imgEnemy0Large, i * 24, 0, 24, 20, 0);
@@ -180,13 +181,13 @@ public class MyGameCanvas extends GameCanvas implements Runnable {
                         10, 17, 0);
             }
 
-            this.imgPerl[0] = Image.createImage("/res/p0.png");
-            this.imgPerl[1] = Image.createImage("/res/p1.png");
-            this.imgPerl[2] = Image.createImage("/res/p2.png");
-            this.imgPerl[3] = Image.createImage("/res/p3.png");
+            this.imgConch[0] = Image.createImage("/res/conch0.png");
+            this.imgConch[1] = Image.createImage("/res/conch1.png");
+            this.imgConch[2] = Image.createImage("/res/conch2.png");
+            this.imgConch[3] = Image.createImage("/res/conch3.png");
             this.imgTop = Image.createImage("/res/up.png");
 
-            Image imgBubbles = Image.createImage("/res/qipao.png");
+            Image imgBubbles = Image.createImage("/res/bubble.png");
             for (int i = 0; i < this.imgBubble.length; i++) {
                 this.imgBubble[i] = Image.createImage(imgBubbles, i * 15, 0,
                         16, 16, 0);
@@ -194,23 +195,24 @@ public class MyGameCanvas extends GameCanvas implements Runnable {
 
             this.imgIntro = Image.createImage("/res/back.png");
             this.imgYummy = Image.createImage("/res/yummy.png");
-            for (int i = 0; i < this.imgBounus.length; i++) {
-                this.imgBounus[i] = Image.createImage("/res/bounus" + i + ".png");
+            for (int i = 0; i < this.imgPrecious.length; i++) {
+                this.imgPrecious[i] = Image.createImage("/res/precious" + i + ".png");
             }
 
-            this.imgGrowth = Image.createImage("/res/chengzhang.png");
-            this.imgSharks = Image.createImage("/res/shayu.png");
+            this.imgGrowth = Image.createImage("/res/exp.png");
+            this.imgSharks = Image.createImage("/res/shark.png");
             for (int i = 0; i < this.imgShark.length; i++) {
                 this.imgShark[i] = Image.createImage(this.imgSharks, i * 90, 0,
                         90, 32, 0);
             }
 
-            this.imgNumber = Image.createImage("/res/shuzi.png");
-            this.imgBy = Image.createImage("/res/chenghao.png");
-            this.imgShuimu = Image.createImage("/res/shuimu.png");
+            this.imgNumber = Image.createImage("/res/number.png");
+            this.imgBy = Image.createImage("/res/mul.png");
+            this.imgShuimu = Image.createImage("/res/jellyfish.png");
             this.imgMenu = Image.createImage("/res/menu.png");
-            this.imgStun = Image.createImage("/res/xuanyun.png");
-            this.imgArrow = Image.createImage("/res/jiantou.png");
+            this.imgStun = Image.createImage("/res/dizziness.png");
+            this.imgArrow = Image.createImage("/res/arrow.png");
+            this.imgBackTip = Image.createImage("/res/backtxt.png");
         } catch (IOException localIOException1) {
             localIOException1.printStackTrace();
         }
@@ -256,7 +258,6 @@ public class MyGameCanvas extends GameCanvas implements Runnable {
 
     public void DrawAll() {
         g.setFont(this.font);
-
         if (gameState == 1) {
             drawIntro(g);
         } else if ((gameState == 0) || (gameState == 2)) {
@@ -299,18 +300,18 @@ public class MyGameCanvas extends GameCanvas implements Runnable {
     }
 
     private void drawMenu(Graphics g) {
-        g.setClip(0, G.MAIN_MENU_TOP, this.screenWidth, 29);
+        g.setClip(0, G.MAIN_MENU_TOP, this.screenWidth, 38);
         if (menuIndex < 3) {
-            g.drawImage(this.imgMenu, this.screenWidth / 2 - 10, G.MAIN_MENU_TOP - menuIndex * 29, 17);
+            g.drawImage(this.imgMenu, this.screenWidth / 2, G.MAIN_MENU_TOP - menuIndex * 38, 17);
 
         } else {
-            g.drawImage(this.imgMenu, this.screenWidth / 2 - 10, G.MAIN_MENU_TOP - (menuIndex + 2) * 29, 17);
+            g.drawImage(this.imgMenu, this.screenWidth / 2, G.MAIN_MENU_TOP - (menuIndex + 2) * 38, 17);
         }
 
 
         g.setClip(0, 0, this.screenWidth, this.screenHeight);
-        g.drawImage(this.imgArrow, G.computeX(110 + 2 * (this.counter % 8 / 4)), G.computeY(150), 0);
-        g.drawRegion(this.imgArrow, 0, 0, this.imgArrow.getWidth(), this.imgArrow.getHeight(), 2, G.computeX(45 - 2 * (this.counter % 8 / 4)), G.computeY(150), 0);
+        g.drawImage(this.imgArrow, G.computeX(117 + 2 * (this.counter % 8 / 4)), G.computeY(160), 0);
+        g.drawRegion(this.imgArrow, 0, 0, this.imgArrow.getWidth(), this.imgArrow.getHeight(), 2, G.computeX(48 - 2 * (this.counter % 8 / 4)), G.computeY(160), 0);
     }
 
     private void drawHelp(Graphics g) {
@@ -320,64 +321,64 @@ public class MyGameCanvas extends GameCanvas implements Runnable {
         int introY = this.screenHeight / 2 - this.imgIntro.getHeight() / 2;
         g.setColor(16777215);
 
-        int helpX = introX + 24;
-        helpY = introY - 30;
+        int helpX = introX;
+        helpY = introY - 90;
 
-        g.drawString("æœ¬æ¸¸æˆæ˜¯ä¸€æ¬¾åŠ¨ä½œç±»æ¸¸æˆï¼ŒçŽ©å®¶æŽ§åˆ¶å°é±¼åœ¨å±å¹•", helpX, helpY + this.lineSpace, 0);
-        g.drawString("å†…æ¸¸åŠ¨å³å¯è¿›è¡Œæ¸¸æˆã€‚", helpX, helpY + 2 * this.lineSpace, 0);
-
-        helpY -= 4;
-        g.drawString("[æ“ä½œæ–¹æ³•]", helpX, helpY + 4 * this.lineSpace, 0);
-        g.drawString("2æˆ–ä¸Šï¼šå‘ä¸Šç§»åŠ¨ã€‚", helpX, helpY + 5 * this.lineSpace, 0);
-        g.drawString("4æˆ–å·¦ï¼šå‘å·¦ç§»åŠ¨ã€‚", helpX, helpY + 6 * this.lineSpace, 0);
-        g.drawString("6æˆ–å³ï¼šå‘å³ç§»åŠ¨ã€‚", helpX, helpY + 7 * this.lineSpace, 0);
-        g.drawString("8æˆ–ä¸‹ï¼šå‘ä¸‹ç§»åŠ¨ã€‚", helpX, helpY + 8 * this.lineSpace, 0);
-        g.drawString("æ•°å­—é”®0ï¼šæš‚åœæ¸¸æˆã€‚", helpX, helpY + 9 * this.lineSpace, 0);
-        g.drawString("è¿”å›žé”®æˆ–Homeé”®ï¼šç›´æŽ¥é€€å‡ºæ¸¸æˆã€‚", helpX, helpY + 10 * this.lineSpace, 0);
+        g.drawString("±¾ÓÎÏ·ÊÇÒ»¿î¶¯×÷ÀàÓÎÏ·£¬Íæ¼Ò¿ØÖÆÐ¡ÓãÔÚÆÁÄ»", helpX, helpY + this.lineSpace, 0);
+        g.drawString("ÄÚÓÎ¶¯¼´¿É½øÐÐÓÎÏ·¡£", helpX, helpY + 2 * this.lineSpace, 0);
 
         helpY -= 4;
-        g.drawString("[æ¸¸æˆè§„åˆ™]", helpX, helpY + 12 * this.lineSpace, 0);
-        g.drawString("åƒæŽ‰æ¯”è‡ªå·±å°çš„é±¼å¯ä»¥ä½¿è‡ªå·±æˆé•¿ï¼ˆæ³¨æ„é¿å¼€æ¯”", helpX, helpY + 13
+        g.drawString("[²Ù×÷·½·¨]", helpX, helpY + 4 * this.lineSpace, 0);
+        g.drawString("ÉÏ£ºÏòÉÏÒÆ¶¯¡£", helpX, helpY + 5 * this.lineSpace, 0);
+        g.drawString("×ó£ºÏò×óÒÆ¶¯¡£", helpX, helpY + 6 * this.lineSpace, 0);
+        g.drawString("ÓÒ£ºÏòÓÒÒÆ¶¯¡£", helpX, helpY + 7 * this.lineSpace, 0);
+        g.drawString("ÏÂ£ºÏòÏÂÒÆ¶¯¡£", helpX, helpY + 8 * this.lineSpace, 0);
+        g.drawString("Êý×Ö¼ü0£º»Øµ½Ö÷²Ëµ¥¡£", helpX, helpY + 9 * this.lineSpace, 0);
+        g.drawString("·µ»Ø¼ü»òHome¼ü£ºÖ±½ÓÍË³öÓÎÏ·¡£", helpX, helpY + 10 * this.lineSpace, 0);
+
+        helpY -= 4;
+        g.drawString("[ÓÎÏ·¹æÔò]", helpX, helpY + 12 * this.lineSpace, 0);
+        g.drawString("³Ôµô±È×Ô¼ºÐ¡µÄÓã¿ÉÒÔÊ¹×Ô¼º³É³¤£¨×¢Òâ±Ü¿ª±È", helpX, helpY + 13
                 * this.lineSpace, 0);
-        g.drawString("è‡ªå·±å¤§çš„é±¼ï¼‰ï¼Œæˆé•¿å®Œå…¨è¿›å…¥ä¸‹ä¸€å…³ã€‚", helpX, helpY + 14
+        g.drawString("×Ô¼º´óµÄÓã£©£¬³É³¤ÍêÈ«½øÈëÏÂÒ»¹Ø¡£", helpX, helpY + 14
                 * this.lineSpace, 0);
 
         helpY -= 4;
-        g.drawString("æŒ‰ç¡®å®šé”®å›žåˆ°ä¸»èœå•ã€‚", helpX, helpY + 16 * this.lineSpace, 0);
+        g.drawString("±¾½çÃæ°´È·¶¨¼ü»Øµ½Ö÷²Ëµ¥¡£", helpX, helpY + 16 * this.lineSpace, 0);
     }
 
     private void drawIntro(Graphics g) {
         g.setColor(1144235);
-        g.drawImage(this.imgSeaBg[((this.level - 1) / 3)],
+        g.drawImage(this.imgUnderWaterWorld[((this.level - 1) / 3)],
                 this.screenWidth / 2, this.screenHeight / 2, 3);
         int introX = this.screenWidth / 2 - this.imgIntro.getWidth() / 2;
         int introY = this.screenHeight / 2 - this.imgIntro.getHeight() / 2;
         g.drawImage(this.imgIntro, introX, introY, 0);
         g.setColor(16777215);
-        g.drawString("ç¬¬" + this.level + "å…³", this.screenWidth / 2, introY + 28,
+        this.drawString(g,"µÚ" + this.level + "¹Ø", this.screenWidth / 2, introY + 28,
                 17);
-        g.drawString("æç¤ºï¼š", introX + 24, introY + 70, 0);
+        g.drawString("ÌáÊ¾£º", introX + 24, introY + 70, 0);
         if (this.level == 1)
-            g.drawString("åƒæŽ‰å°é±¼ä½¿è‡ªå·±æˆé•¿ã€‚", introX + 24, introY + 92, 0);
+            this.drawString(g,"³ÔµôÐ¡ÓãÊ¹×Ô¼º³É³¤¡£", introX + 24, introY + 92, 0);
         else if (this.level == 2)
-            g.drawString("2xå¯åœ¨çŸ­æ—¶é—´å†…èŽ·å¾—2å€ç§¯åˆ†ã€‚", introX + 24, introY + 92, 0);
+            this.drawString(g,"2x¿ÉÔÚ¶ÌÊ±¼äÄÚ»ñµÃ2±¶»ý·Ö¡£", introX + 24, introY + 92, 0);
         else if (this.level == 3)
-            g.drawString("å°å¿ƒé²¨é±¼ï¼Œä¸èƒ½ç¢°åˆ°å®ƒä»¬ã€‚", introX + 24, introY + 92, 0);
+            this.drawString(g,"Ð¡ÐÄöèÓã£¬²»ÄÜÅöµ½ËüÃÇ¡£", introX + 24, introY + 92, 0);
         else if (this.level == 4)
-            g.drawString("è¿›å…¥æ–°çš„æµ·åŸŸã€‚", introX + 24, introY + 92, 0);
+            this.drawString(g,"½øÈëÐÂµÄº£Óò¡£", introX + 24, introY + 92, 0);
         else if (this.level == 5)
-            g.drawString("æ³¨æ„æ°´æ¯ï¼Œç¢°åˆ°ä¼šè¢«éº»ç—¹ä¸€æ®µæ—¶é—´ã€‚", introX + 24, introY + 92, 0);
+            this.drawString(g,"×¢ÒâË®Ä¸£¬Åöµ½»á±»Âé±ÔÒ»¶ÎÊ±¼ä¡£", introX + 24, introY + 92, 0);
         else if (this.level == 6)
-            g.drawString("é›ªèŠ±å¯ä»¥ä½¿æ‰€æœ‰æ•Œäººéº»ç—¹ä¸€æ®µæ—¶é—´ã€‚", introX + 24, introY + 92, 0);
+            this.drawString(g,"Ñ©»¨¿ÉÒÔÊ¹ËùÓÐµÐÈËÂé±ÔÒ»¶ÎÊ±¼ä¡£", introX + 24, introY + 92, 0);
         else if (this.level == 7)
-            g.drawString("è¿›å…¥æ–°çš„æµ·åŸŸï¼Œå°å¿ƒæ•Œäººã€‚", introX + 24, introY + 92, 0);
+            this.drawString(g,"½øÈëÐÂµÄº£Óò£¬Ð¡ÐÄµÐÈË¡£", introX + 24, introY + 92, 0);
         else if (this.level == 8)
-            g.drawString("å°å¿ƒé²¨é±¼ï¼Œå·²ç»æŽ¥è¿‘èƒœåˆ©äº†ã€‚", introX + 24, introY + 92, 0);
+            this.drawString(g,"Ð¡ÐÄöèÓã£¬ÒÑ¾­½Ó½üÊ¤ÀûÁË¡£", introX + 24, introY + 92, 0);
         else if (this.level == 9) {
-            g.drawString("æ³¨æ„å¤§ç™½é²¨ï¼Œå®Œæˆæ•´ä¸ªæ¸¸æˆå§ã€‚", introX + 24, introY + 92, 0);
+            this.drawString(g,"×¢Òâ´ó°×öè£¬Íê³ÉÕû¸öÓÎÏ·°É¡£", introX + 24, introY + 92, 0);
         }
 
-        g.drawString("ç¡®å®š", introX + 24,
+        this.drawString(g,"È·¶¨", introX + 24,
                 introY + this.imgIntro.getHeight() - 30, 0);
     }
 
@@ -388,7 +389,7 @@ public class MyGameCanvas extends GameCanvas implements Runnable {
         int introY = this.screenHeight / 2 - this.imgIntro.getHeight() / 2;
         g.drawImage(this.imgIntro, introX, introY, 0);
         g.setColor(16777215);
-        g.drawString("æ­å–œæ‚¨å®Œæˆæ¸¸æˆ!", this.screenWidth / 2,
+        this.drawString(g,"¹§Ï²ÄúÍê³ÉÓÎÏ·!", this.screenWidth / 2,
                 this.screenHeight / 2 - 8, 17);
     }
 
@@ -398,8 +399,8 @@ public class MyGameCanvas extends GameCanvas implements Runnable {
         int introX = this.getWidth() / 2;
         int introY = this.getHeight() / 2;
         g.drawImage(this.imgIntro, introX - this.imgIntro.getWidth() / 2, introY - this.imgIntro.getHeight() / 2, 0);
-        g.setColor(26, 126, 234);
-        this.drawString(g, "ç¬¬" + this.level + "å…³ç»Ÿè®¡", this.screenWidth / 2, introY - 50, 17);
+        g.setColor(0, 0, 0);
+        this.drawString(g, "µÚ" + this.level + "¹ØÍ³¼Æ", this.screenWidth / 2, introY - 50, 17);
         g.drawImage(this.imgEnemy[((this.small[(this.level - 1)] - 2) * 15)],
                 introX - 30, introY - 25, 0);
         g.drawImage(this.imgEnemy[((this.middle[(this.level - 1)] - 2) * 15)],
@@ -410,32 +411,34 @@ public class MyGameCanvas extends GameCanvas implements Runnable {
         g.drawImage(this.imgBy, introX, introY + 5, 0);
         g.drawImage(this.imgBy, introX, introY + 30, 0);
 
-        g.setClip(introX + 14, introY - 20, 6, 10);
-        g.drawImage(this.imgNumber, introX + 14 - 6 * (this.smallEaten / 10),
-                introY - 20, 0);
-        g.setClip(introX + 20, introY - 20, 6, 10);
-        g.drawImage(this.imgNumber, introX + 20 - 6 * (this.smallEaten % 10),
-                introY - 20, 0);
-        g.setClip(introX + 14, introY + 5, 6, 10);
-        g.drawImage(this.imgNumber, introX + 14 - 6 * (this.middleEaten / 10),
-                introY + 5, 0);
-        g.setClip(introX + 20, introY + 5, 6, 10);
-        g.drawImage(this.imgNumber, introX + 20 - 6 * (this.middleEaten % 10),
-                introY + 5, 0);
-        g.setClip(introX + 14, introY + 30, 6, 10);
-        g.drawImage(this.imgNumber, introX + 14 - 6 * (this.largeEaten / 10),
-                introY + 30, 0);
-        g.setClip(introX + 20, introY + 30, 6, 10);
-        g.drawImage(this.imgNumber, introX + 20 - 6 * (this.largeEaten % 10),
-                introY + 30, 0);
+        int numW = 16;
+        int numH = 24;
+        g.setClip(introX + 18, introY - 26, numW, numH);
+        g.drawImage(this.imgNumber, introX + 18 - 16 * (this.smallEaten / 10),
+                introY - 26, 0);
+        g.setClip(introX + 34, introY - 26, numW, numH);
+        g.drawImage(this.imgNumber, introX + 34 - 16 * (this.smallEaten % 10),
+                introY - 26, 0);
+        g.setClip(introX + 18, introY, numW, numH);
+        g.drawImage(this.imgNumber, introX + 18 - 16 * (this.middleEaten / 10),
+                introY, 0);
+        g.setClip(introX + 34, introY, numW, numH);
+        g.drawImage(this.imgNumber, introX + 34 - 16 * (this.middleEaten % 10),
+                introY, 0);
+        g.setClip(introX + 18, introY + 25, numW, numH);
+        g.drawImage(this.imgNumber, introX + 18 - 16 * (this.largeEaten / 10),
+                introY + 25, 0);
+        g.setClip(introX + 34, introY + 25, numW, numH);
+        g.drawImage(this.imgNumber, introX + 34 - 16 * (this.largeEaten % 10),
+                introY + 25, 0);
 
         g.setClip(0, 0, this.screenWidth, this.screenHeight);
-        g.setColor(26, 126, 234);
-        this.drawString(g, "ç¡®å®š", introX + 110, introY + 30, 0);
+        g.setColor(0, 0 ,0);
+        this.drawString(g, "È·¶¨", introX + 110, introY + 30, 0);
     }
 
     private void drawBack(Graphics g) {
-        g.drawImage(this.imgSeaBg[((this.level - 1) / 3)], this.offsetX / 3
+        g.drawImage(this.imgUnderWaterWorld[((this.level - 1) / 3)], this.offsetX / 3
                 + this.screenWidth / 2, this.offsetY / 3 + this.screenHeight
                 / 2, 3);
         if ((this.level - 1) / 3 == 0)
@@ -583,29 +586,29 @@ public class MyGameCanvas extends GameCanvas implements Runnable {
                         }
                     } else if (sp.type == 9998) {
                         if (sp.action == 6) {
-                            g.drawImage(this.imgPerl[3], sp.x, sp.y, 0);
+                            g.drawImage(this.imgConch[3], sp.x, sp.y, 0);
                         } else if (sp.action == 8) {
-                            g.drawImage(this.imgPerl[2], sp.x, sp.y, 0);
+                            g.drawImage(this.imgConch[2], sp.x, sp.y, 0);
                         } else if (sp.action == 7) {
                             if (sp.ctr > 5)
-                                g.drawImage(this.imgPerl[3], sp.x, sp.y, 0);
+                                g.drawImage(this.imgConch[3], sp.x, sp.y, 0);
                             else
-                                g.drawImage(this.imgPerl[2], sp.x, sp.y, 0);
+                                g.drawImage(this.imgConch[2], sp.x, sp.y, 0);
                         }
                     } else if ((sp.type == 9996) || (sp.type == 9997)) {
                         g.setClip(sp.x, sp.y, 16, 16);
                         g.drawImage(this.imgBubble[sp.value], sp.x, sp.y, 0);
                         g.setClip(0, 0, this.screenWidth, this.screenHeight);
                     } else if (sp.type == 22) {
-                        g.drawImage(this.imgBounus[0], sp.x, sp.y, 0);
+                        g.drawImage(this.imgPrecious[0], sp.x, sp.y, 0);
                     } else if (sp.type == 24) {
-                        g.drawImage(this.imgBounus[2], sp.x, sp.y, 0);
+                        g.drawImage(this.imgPrecious[2], sp.x, sp.y, 0);
                     } else if (sp.type == 23) {
-                        g.drawImage(this.imgBounus[1], sp.x, sp.y, 0);
+                        g.drawImage(this.imgPrecious[1], sp.x, sp.y, 0);
                     } else if (sp.type == 25) {
-                        g.drawImage(this.imgBounus[3], sp.x, sp.y, 0);
+                        g.drawImage(this.imgPrecious[3], sp.x, sp.y, 0);
                     } else if (sp.type == 26) {
-                        g.drawImage(this.imgBounus[4], sp.x, sp.y, 0);
+                        g.drawImage(this.imgPrecious[4], sp.x, sp.y, 0);
                     } else if (sp.type == 9995) {
                         g.setClip(sp.x, sp.y, 28, 35);
                         if (sp.ctr > 18)
@@ -623,10 +626,10 @@ public class MyGameCanvas extends GameCanvas implements Runnable {
                     } else if ((this.sprite[i].type == 21)
                             || (this.sprite[i].type == 20)) {
                         if (this.sprite[i].type == 21)
-                            g.drawImage(this.imgPerl[1], this.sprite[i].x,
+                            g.drawImage(this.imgConch[1], this.sprite[i].x,
                                     this.sprite[i].y, 0);
                         else
-                            g.drawImage(this.imgPerl[0], this.sprite[i].x,
+                            g.drawImage(this.imgConch[0], this.sprite[i].x,
                                     this.sprite[i].y, 0);
                     } else if (sp.type == 27) {
                         g
@@ -643,19 +646,17 @@ public class MyGameCanvas extends GameCanvas implements Runnable {
         drawScore(g);
         drawGrowth(g);
         drawCanEat(g);
-        drawBounus(g);
+        drawPrecious(g);
     }
 
-    private int randomQiPao() {
+    private int randomBubble() {
         return (this.rdm.nextInt() >>> 1) % 5;
     }
 
     private void drawBoard(Graphics g) {
         g.setColor(12756732);
         g.drawImage(this.imgTop, 470, 0, 0);
-
-        g.setColor(0);
-        g.drawString("æŒ‰0é”®è¿”å›ž", 478, 530 - 24, 0);
+        g.drawImage(imgBackTip,478, 530 - 50, 0);
         g.setColor(12756732);
 
     }
@@ -693,67 +694,66 @@ public class MyGameCanvas extends GameCanvas implements Runnable {
     }
 
     private void drawCanEat(Graphics g) {
-        int CEX = 475;
         g.drawImage(this.imgEnemy[((this.small[(this.level - 1)] - 2) * 15)],
-                555, 13, 0);
+                480, 60, 0);
         if (this.player.level >= 1) {
             g.drawImage(
                     this.imgEnemy[((this.middle[(this.level - 1)] - 2) * 15)],
-                    569, 13, 0);
+                    480, 90, 0);
         }
         if (this.player.level == 2)
             g.drawImage(
                     this.imgEnemy[((this.large[(this.level - 1)] - 2) * 15)],
-                    583, 13, 0);
+                    480, 120, 0);
     }
 
     private void drawRest(Graphics g) {
-        g.drawImage(this.imgPlayer[0], 598, 13, 0);
-        g.drawImage(this.imgBy, 618, 13, 0);
-        g.setClip(625, 10, 6, 13);
-        g.drawImage(this.imgNumber, 625 - this.rest * 6, 13, 0);
-        g.setClip(0, 0, this.screenWidth, this.screenHeight);
+//        g.drawImage(this.imgPlayer[0], 598, 13, 0);
+//        g.drawImage(this.imgBy, 618, 13, 0);
+//        g.setClip(625, 10, 6, 13);
+//        g.drawImage(this.imgNumber, 625 - this.rest * 6, 13, 0);
+//        g.setClip(0, 0, this.screenWidth, this.screenHeight);
     }
 
-    private void drawBounus(Graphics g) {
+    private void drawPrecious(Graphics g) {
         if (this.doubleCtr > 0) {
-            g.drawImage(this.imgBounus[1], this.screenWidth - 25, 50, 0);
+            g.drawImage(this.imgPrecious[1], this.screenWidth - 25, 50, 0);
         }
         if (this.speedCtr > 0) {
-            g.drawImage(this.imgBounus[3], this.screenWidth - 25, 50, 0);
+            g.drawImage(this.imgPrecious[3], this.screenWidth - 25, 50, 0);
         }
         if (this.freezeCtr > 0)
-            g.drawImage(this.imgBounus[4], this.screenWidth - 25, 50, 0);
+            g.drawImage(this.imgPrecious[4], this.screenWidth - 25, 50, 0);
     }
 
     private void drawLevelComplete(Graphics g) {
         g.setColor(16777215);
-        g.drawString("ç¬¬" + this.level + "å…³å®Œæˆ", this.screenWidth / 2,
+        this.drawString(g,"µÚ" + this.level + "¹ØÍê³É", this.screenWidth / 2,
                 this.screenHeight / 2 - 8, 17);
     }
 
     private void drawPause(Graphics g) {
         g.setColor(1144235);
-        g.drawImage(this.imgSeaBg[((this.level - 1) / 3)],
+        g.drawImage(this.imgUnderWaterWorld[((this.level - 1) / 3)],
                 this.screenWidth / 2, this.screenHeight / 2, 3);
         int introX = this.screenWidth / 2 - this.imgIntro.getWidth() / 2;
         int introY = this.screenHeight / 2 - this.imgIntro.getHeight() / 2;
         g.drawImage(this.imgIntro, introX, introY, 0);
         g.setColor(16777215);
-        g.drawString("æç¤º", this.screenWidth / 2, introY + 28, 17);
-        g.drawString("æ‚¨ç¡®å®šè¦è¿”å›žä¸»èœå•ï¼Ÿ", introX + 24, introY + 70, 0);
-        g.drawString("0-ç»§ç»­æ¸¸æˆï¼Œ1-è¿”å›žä¸»èœå•ã€‚", introX + 24, introY + 102, 0);
+        g.drawString("ÌáÊ¾", this.screenWidth / 2, introY + 28, 17);
+        g.drawString("ÄúÈ·¶¨Òª·µ»ØÖ÷²Ëµ¥£¿", introX + 24, introY + 70, 0);
+        g.drawString("0-¼ÌÐøÓÎÏ·£¬1-·µ»ØÖ÷²Ëµ¥¡£", introX + 24, introY + 102, 0);
     }
 
     private void drawDead(Graphics g) {
         g.setColor(16777215);
-        g.drawString("ä½ æŒ‚äº†ï¼", this.screenWidth / 2, this.screenHeight / 2 - 8,
+        g.drawString("Äã¹ÒÁË£¡", this.screenWidth / 2, this.screenHeight / 2 - 8,
                 17);
     }
 
     private void drawGameOver(Graphics g) {
         g.setColor(16777215);
-        g.drawString("æ¸¸æˆç»“æŸï¼", this.screenWidth / 2, this.screenHeight / 2 - 8,
+        g.drawString("ÓÎÏ·½áÊø£¡", this.screenWidth / 2, this.screenHeight / 2 - 8,
                 17);
     }
 
@@ -834,10 +834,10 @@ public class MyGameCanvas extends GameCanvas implements Runnable {
             DrawAll();
             update();
             long tTime = System.currentTimeMillis() - startTime;
-            if (tTime >= 80L)
+            if (tTime >= 30L)
                 continue;
             try {
-                Thread.sleep(80L - tTime);
+                Thread.sleep( 30L - tTime);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
@@ -954,14 +954,8 @@ public class MyGameCanvas extends GameCanvas implements Runnable {
                     helpY = 76;
                     break;
                 case 2:
-                    gameState = 5;
-                    break;
-                case 3:
                     this.isRunning = false;
                     break;
-                case 4:
-                    gameState = 0;
-                    pauseFlag = false;
                 default:
                     break;
             }
@@ -969,19 +963,19 @@ public class MyGameCanvas extends GameCanvas implements Runnable {
             this.keyLeft = false;
             if (resumeFlag) {
                 menuIndex -= 1;
-                menuIndex = (menuIndex + 5) % 5;
+                menuIndex = (menuIndex + 4) % 4;
             } else {
                 menuIndex -= 1;
-                menuIndex = (menuIndex + 5 - 1) % 4;
+                menuIndex = (menuIndex + 4 - 1) % 3;
             }
         } else if (this.keyRight) {
             this.keyRight = false;
             if (resumeFlag) {
                 menuIndex += 1;
-                menuIndex = (menuIndex + 5) % 5;
+                menuIndex = (menuIndex + 4) % 4;
             } else {
                 menuIndex += 1;
-                menuIndex = (menuIndex + 5 - 1) % 4;
+                menuIndex = (menuIndex + 4 - 1) % 3;
             }
         }
     }
@@ -1010,7 +1004,7 @@ public class MyGameCanvas extends GameCanvas implements Runnable {
         }
         r = (this.rdm.nextInt() >>> 1) % 200;
         if (r == 0)
-            initBubbleBounus();
+            initBubblePrecious();
     }
 
     private void updatePlayer() {
@@ -1249,7 +1243,7 @@ public class MyGameCanvas extends GameCanvas implements Runnable {
                         enemy.action = 8;
                         enemy.ctr = 25;
                     } else if (enemy.action == 8) {
-                        initBounus(enemy);
+                        initPrecious(enemy);
                         enemy.action = 6;
                         enemy.ctr = 50;
                     } else if (enemy.action == 10) {
@@ -1416,7 +1410,7 @@ public class MyGameCanvas extends GameCanvas implements Runnable {
         for (int i = 0; i < this.largeCount[(this.level - 1)]; i++) {
             initEnemy(this.large[(this.level - 1)], 2);
         }
-        initPerl();
+        initConch();
 
     }
 
@@ -1451,18 +1445,18 @@ public class MyGameCanvas extends GameCanvas implements Runnable {
         }
     }
 
-    private void initPerl() {
-        //System.out.println("===========  initPerl");
-        SP perl = getFreeSprite();
-        if (perl != null) {
-            perl.type = 9998;
-            perl.level = 3;
-            perl.width = 23;
-            perl.height = 23;
-            perl.x = (this.screenWidth / 2 - perl.width / 2);
-            perl.y = (this.screenHeight - perl.height);
-            perl.action = 6;
-            perl.ctr = 50;
+    private void initConch() {
+        //System.out.println("===========  initConch");
+        SP conch = getFreeSprite();
+        if (conch != null) {
+            conch.type = 9998;
+            conch.level = 3;
+            conch.width = 23;
+            conch.height = 23;
+            conch.x = (this.screenWidth / 2 - conch.width / 2);
+            conch.y = (this.screenHeight - conch.height);
+            conch.action = 6;
+            conch.ctr = 50;
         }
     }
 
@@ -1503,26 +1497,26 @@ public class MyGameCanvas extends GameCanvas implements Runnable {
         }
     }
 
-    private void initBounus(SP perl) {
-        //System.out.println("===========  initBounus");
-        SP bounus = getFreeSprite();
-        if (bounus != null) {
-            int r = (this.rdm.nextInt() >>> 1) % G.MAX_PERL_RDM;
-            if (r < G.NULL_PERL_RDM)
-                bounus.type = 0;
-            else if (r >= G.BLACK_PERL_RDM)
-                bounus.type = 21;
+    private void initPrecious(SP conch) {
+        //System.out.println("===========  initPrecious");
+        SP precious = getFreeSprite();
+        if (precious != null) {
+            int r = (this.rdm.nextInt() >>> 1) % G.MAX_CONCH_RDM;
+            if (r < G.NULL_CONCH_RDM)
+                precious.type = 0;
+            else if (r >= G.BLACK_CONCH_RDM)
+                precious.type = 21;
             else {
-                bounus.type = 20;
+                precious.type = 20;
             }
-            bounus.level = 0;
-            bounus.width = 8;
-            bounus.height = 9;
-            perl.x += 7;
-            perl.y += 7;
-            bounus.action = 9;
-            bounus.ctr = 0;
-            bounus.ext = G.OTHER;
+            precious.level = 0;
+            precious.width = 8;
+            precious.height = 9;
+            conch.x += 7;
+            conch.y += 7;
+            precious.action = 9;
+            precious.ctr = 0;
+            precious.ext = G.OTHER;
         }
     }
 
@@ -1540,60 +1534,60 @@ public class MyGameCanvas extends GameCanvas implements Runnable {
                     + this.offsetXMax[(this.level - 1)] - bubble.width) + this.offsetXMin[(this.level - 1)]);
             bubble.y = (this.screenHeight + this.offsetY);
             bubble.action = 10;
-            bubble.value = randomQiPao();
+            bubble.value = randomBubble();
         }
     }
 
-    private void initBubbleBounus() {
-        //System.out.println("===========  initBubbleBounus");
-        SP bubbleBounus = getFreeSprite();
-        if (bubbleBounus != null) {
+    private void initBubblePrecious() {
+        //System.out.println("===========  initBubblePrecious");
+        SP bubblePrecious = getFreeSprite();
+        if (bubblePrecious != null) {
             int r = (this.rdm.nextInt() >>> 1) % 100;
             if (this.level == 1)
-                bubbleBounus.type = 22;
+                bubblePrecious.type = 22;
             else if (this.level == 2) {
                 if (r < 10)
-                    bubbleBounus.type = 23;
+                    bubblePrecious.type = 23;
                 else
-                    bubbleBounus.type = 22;
+                    bubblePrecious.type = 22;
             } else if ((this.level == 3) || (this.level == 4)) {
                 if (r < 10)
-                    bubbleBounus.type = 23;
+                    bubblePrecious.type = 23;
                 else if (r < 12)
-                    bubbleBounus.type = 24;
+                    bubblePrecious.type = 24;
                 else
-                    bubbleBounus.type = 22;
+                    bubblePrecious.type = 22;
             } else if (this.level == 5) {
                 if (r < 10)
-                    bubbleBounus.type = 23;
+                    bubblePrecious.type = 23;
                 else if (r < 12)
-                    bubbleBounus.type = 24;
+                    bubblePrecious.type = 24;
                 else if (r < 20)
-                    bubbleBounus.type = 25;
+                    bubblePrecious.type = 25;
                 else {
-                    bubbleBounus.type = 22;
+                    bubblePrecious.type = 22;
                 }
             } else if (r < 10)
-                bubbleBounus.type = 23;
+                bubblePrecious.type = 23;
             else if (r < 12)
-                bubbleBounus.type = 24;
+                bubblePrecious.type = 24;
             else if (r < 20)
-                bubbleBounus.type = 25;
+                bubblePrecious.type = 25;
             else if (r < 35)
-                bubbleBounus.type = 26;
+                bubblePrecious.type = 26;
             else {
-                bubbleBounus.type = 22;
+                bubblePrecious.type = 22;
             }
 
-            bubbleBounus.ext = G.OTHER;
-            bubbleBounus.level = 0;
-            bubbleBounus.width = 15;
-            bubbleBounus.height = 15;
-            bubbleBounus.x = ((this.rdm.nextInt() >>> 1)
+            bubblePrecious.ext = G.OTHER;
+            bubblePrecious.level = 0;
+            bubblePrecious.width = 15;
+            bubblePrecious.height = 15;
+            bubblePrecious.x = ((this.rdm.nextInt() >>> 1)
                     % (this.screenWidth - this.offsetXMin[(this.level - 1)]
-                    + this.offsetXMax[(this.level - 1)] - bubbleBounus.width) + this.offsetXMin[(this.level - 1)]);
-            bubbleBounus.y = (this.screenHeight + this.offsetY);
-            bubbleBounus.action = 11;
+                    + this.offsetXMax[(this.level - 1)] - bubblePrecious.width) + this.offsetXMin[(this.level - 1)]);
+            bubblePrecious.y = (this.screenHeight + this.offsetY);
+            bubblePrecious.action = 11;
         }
     }
 
@@ -1676,9 +1670,9 @@ public class MyGameCanvas extends GameCanvas implements Runnable {
         } else if (enemy.type < 22) {
             if (enemy.type == 20) {
                 int r = (this.rdm.nextInt() >>> 1) % 3 + 1;
-                initScore(G.WHITE_PERL_SCORE * r, enemy.x, enemy.y);
+                initScore(G.WHITE_CONSH_SCORE * r, enemy.x, enemy.y);
             } else if (enemy.type == 21) {
-                initScore(G.WHITE_PERL_SCORE, enemy.x, enemy.y);
+                initScore(G.WHITE_CONSH_SCORE, enemy.x, enemy.y);
             } else if (this.player.level < 2) {
                 this.player.level += 1;
                 if (this.player.level == 1)
@@ -1755,16 +1749,8 @@ public class MyGameCanvas extends GameCanvas implements Runnable {
 
     private void drawString(Graphics g, String str, int x, int y, int anchor) {
         g.setColor(0, 0, 0);
-        g.drawString(str, x - 2, y, anchor);
-        g.drawString(str, x + 2, y, anchor);
-        g.drawString(str, x, y - 2, anchor);
-        g.drawString(str, x, y + 2, anchor);
-        g.setColor(0, 0, 129);
-        g.drawString(str, x - 1, y, anchor);
-        g.drawString(str, x + 1, y, anchor);
-        g.drawString(str, x, y - 1, anchor);
-        g.drawString(str, x, y + 1, anchor);
-        g.setColor(199, 218, 243);
+        Font boldFont = Font.getFont(Font.FACE_SYSTEM, Font.STYLE_BOLD, Font.SIZE_MEDIUM);
+        g.setFont(boldFont);
         g.drawString(str, x, y, anchor);
     }
 }
