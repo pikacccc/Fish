@@ -744,14 +744,12 @@ public class MyGameCanvas extends GameCanvas implements Runnable {
     }
 
     private void drawDead(Graphics g) {
-        g.setColor(16777215);
-        g.drawString("你挂了！", this.screenWidth / 2, this.screenHeight / 2 - 8,
+        this.drawString(g,"你挂了！", this.screenWidth / 2, this.screenHeight / 2 - 8,
                 17);
     }
 
     private void drawGameOver(Graphics g) {
-        g.setColor(16777215);
-        g.drawString("游戏结束！", this.screenWidth / 2, this.screenHeight / 2 - 8,
+        this.drawString(g,"游戏结束！", this.screenWidth / 2, this.screenHeight / 2 - 8,
                 17);
     }
 
