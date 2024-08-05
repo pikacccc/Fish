@@ -348,16 +348,14 @@ public class MyGameCanvas extends GameCanvas implements Runnable {
     }
 
     private void drawIntro(Graphics g) {
-        g.setColor(1144235);
         g.drawImage(this.imgUnderWaterWorld[((this.level - 1) / 3)],
                 this.screenWidth / 2, this.screenHeight / 2, 3);
         int introX = this.screenWidth / 2 - this.imgIntro.getWidth() / 2;
         int introY = this.screenHeight / 2 - this.imgIntro.getHeight() / 2;
         g.drawImage(this.imgIntro, introX, introY, 0);
-        g.setColor(16777215);
         this.drawString(g,"第" + this.level + "关", this.screenWidth / 2, introY + 28,
                 17);
-        g.drawString("提示：", introX + 24, introY + 70, 0);
+        this.drawString(g,"提示：", introX + 24, introY + 70, 0);
         if (this.level == 1)
             this.drawString(g,"吃掉小鱼使自己成长。", introX + 24, introY + 92, 0);
         else if (this.level == 2)
@@ -740,9 +738,9 @@ public class MyGameCanvas extends GameCanvas implements Runnable {
         int introY = this.screenHeight / 2 - this.imgIntro.getHeight() / 2;
         g.drawImage(this.imgIntro, introX, introY, 0);
         g.setColor(16777215);
-        g.drawString("提示", this.screenWidth / 2, introY + 28, 17);
-        g.drawString("您确定要返回主菜单？", introX + 24, introY + 70, 0);
-        g.drawString("0-继续游戏，1-返回主菜单。", introX + 24, introY + 102, 0);
+        this.drawString(g,"提示", this.screenWidth / 2, introY + 28, 17);
+        this.drawString(g,"您确定要返回主菜单？", introX + 24, introY + 70, 0);
+        this.drawString(g,"0-继续游戏，1-返回主菜单。", introX + 24, introY + 102, 0);
     }
 
     private void drawDead(Graphics g) {
